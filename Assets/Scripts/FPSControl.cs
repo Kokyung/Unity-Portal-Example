@@ -59,6 +59,12 @@ public class FPSControl : MonoBehaviour
         speed = transform.rotation * speed;
 
         cc.Move(speed * Time.deltaTime);
+
+        // 천장에 닿으면 다시 떨어지게 한다.
+        if ((cc.collisionFlags & CollisionFlags.Above) != 0)
+        {
+            if (verticalVelocity > 0) verticalVelocity = 0;
+        }
     }
 
     //Player의 회전을 담당
